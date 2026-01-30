@@ -1,50 +1,61 @@
-This README provides a concise overview of two distinct data science projects focused on anomaly detection and forensic data analysis.
-Data Science Projects: Outlier & Identity Analysis
-#1. SpamBase Outlier Detection
-Why?
+# Data Science Projects: Outlier & Identity Analysis
 
-The objective was to perform unsupervised outlier detection on legitimate communications. By isolating "ham" (non-spam) emails, the project aimed to identify unusual patterns or "odd" emails that deviate from standard legitimate messaging.
+This README provides a concise overview of two data science projects focused on **anomaly detection** and **forensic identity analysis**.
 
-#Datasets & Pre-processing
+---
 
-    Dataset: The SpamBase Dataset (4,601 instances, 57 features).
+## 1. SpamBase Outlier Detection
 
-#Cleaning: The data was filtered to include only non-spam instances, and the 'class' label was removed to ensure the models operated in a purely unsupervised manner.
+### Objective  
+The goal of this project was to perform **unsupervised outlier detection** on legitimate email communications. By isolating “ham” (non-spam) emails, the analysis aimed to identify unusual patterns that deviate from typical legitimate messaging.
 
-    Preparation: Features were scaled using StandardScaler to ensure uniform variance across word and character frequency metrics.
+### Dataset & Pre-processing  
 
-#Algorithms Used
+- **Dataset:** SpamBase Dataset (4,601 instances, 57 features)  
+- **Filtering:** Only non-spam (“ham”) emails were retained; the class label was removed to ensure a fully unsupervised setting.  
+- **Scaling:** Features were standardized using `StandardScaler` to normalize word and character frequency metrics.
 
-    Isolation Forest: Used to isolate anomalies by randomly partitioning features.
+### Algorithms Used  
 
-    Local Outlier Factor (LOF): Used to detect outliers based on the local density of data points relative to their neighbours.
+- **Isolation Forest:** Identifies anomalies by randomly partitioning feature space.  
+- **Local Outlier Factor (LOF):** Detects outliers based on local density relative to neighbouring data points.
 
-##Analysis & Interpretation
+### Analysis & Insights  
 
-The models successfully identified a small percentage of "ham" emails as outliers. These represent rare communication types or instances where legitimate emails share characteristics typically found in anomalies, providing insight into the boundaries of "normal" data.
-#2. The "Hacker Theory" Analysis
-Why?
+The models identified a small subset of legitimate emails as outliers. These emails represent rare communication patterns or edge cases where legitimate messages exhibit atypical characteristics, helping define the boundaries of “normal” behaviour.
 
-This project was designed to test a hypothesis regarding Identity Spoofing. It investigated why initial data suggested younger users were the primary outliers in fraudulent activity.
+---
 
-##Datasets & Methodology
+## 2. “Hacker Theory” Identity Analysis
 
-    Datasets: A comparative study between two data sources:
+### Objective  
+This project tested a hypothesis related to **identity spoofing** in fraudulent activity. Initial observations suggested that younger users were the primary outliers, raising the question of whether this pattern reflected genuine behaviour or data manipulation.
 
-        Claimed Transaction Data: Demographics (age) provided during a transaction.
+### Datasets & Methodology  
 
-Actual Account Data: Verified records of the account owners.
+Two data sources were compared:
 
-##Method: A Mismatch Analysis was conducted to calculate the age gap between the person performing the transaction and the actual owner.
+- **Claimed Transaction Data:** Demographic information (e.g. age) provided during transactions.  
+- **Actual Account Data:** Verified demographic records of account owners.
 
-##Algorithms & Logic
+### Method  
 
-    Custom Mismatch Logic: Calculated the "Identity Noise" by identifying discrepancies (e.g., a transaction claiming a 22-year-old user when the owner is actually 55).
+- **Mismatch Analysis:** Calculated the age gap between the claimed user and the actual account owner.  
+- **Identity Noise Detection:** Identified discrepancies where the claimed age differed from the verified age.
 
-    Data Filtering: Isolated instances where the claimed age did not match the record age.
+### Logic & Processing  
 
-##Analysis & Interpretation
+- Custom mismatch logic quantified **identity noise** (e.g. a transaction claiming a 22-year-old user when the account owner is 55).  
+- Data was filtered to isolate spoofed identity cases.
 
-    The Findings: The "Hacker Theory" was proven correct—the high number of Gen Z outliers in initial charts was actually "Identity Noise" caused by scammers pretending to be younger to blend in.
+### Findings & Interpretation  
 
-Conclusion: Once identity noise was removed, the 18–30 age group for victims dropped to zero. The analysis proved that hackers primarily target older users (aged 31–45 and above) while spoofing younger identities.
+The results confirmed the **“Hacker Theory.”** The apparent concentration of Gen Z outliers was largely due to identity spoofing, where scammers impersonated younger users to avoid suspicion.
+
+Once identity noise was removed, the number of genuine victims aged 18–30 dropped to zero. The analysis revealed that fraudsters primarily target older users (31–45 and above) while masquerading as younger individuals.
+
+---
+
+## Conclusion  
+
+Together, these projects demonstrate how unsupervised anomaly detection and forensic data analysis can uncover hidden patterns, challenge misleading initial assumptions, and provide deeper insight into complex data behaviour.
